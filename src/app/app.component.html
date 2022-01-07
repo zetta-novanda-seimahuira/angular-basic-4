@@ -1,0 +1,55 @@
+<div class="container">
+  <app-input-form 
+  (taskCreated)="ontaskAdded($event)" 
+  (bpCreated)="ongoalAdded($event)"
+  ></app-input-form>
+  <hr>
+<div class="row">
+  <div class="col-xs-6">
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>Goal in This Week</h3>
+
+        <button class="btn btn-primary" (click)=onChangeFirst()>Change element</button>
+        <button class="btn btn-danger" (click)=onDestroyFirst()>Destroy</button>
+
+
+        <ng-container *ngFor = "let taskElement of taskElements">
+          <div *ngIf="taskElement.type=='goal'">
+            <app-card 
+            [tskElement]="taskElement"
+            [name]="taskElement.name"
+            >
+            <!-- {{taskElement.name}} -->
+            <p *ngIf="taskElement.type==='task'" style="color:grey;">{{taskElement.content}}</p>
+            <p *ngIf="taskElement.type==='goal'">{{taskElement.content}}</p>
+          </app-card>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-6">
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>Task</h3>
+        <div class="row" >
+          <ng-container *ngFor = "let taskElement of taskElements">
+            
+            <div *ngIf="taskElement.type=='task'">
+              <app-card 
+              [tskElement]="taskElement"
+              [name]="taskElement.name"
+              >
+              <p *ngIf="taskElement.type==='task'" style="color:grey;">{{taskElement.content}}</p>
+              <p *ngIf="taskElement.type==='goal'">{{taskElement.content}}</p>
+            
+            </app-card>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div> 
